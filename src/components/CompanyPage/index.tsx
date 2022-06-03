@@ -1,52 +1,21 @@
 import React from "react";
 
-import useCompanies from "../hooks/useCompanies";
-import { removeTrailingSlash } from "../helpers/removeTrailingSlash";
-import getCompany from "../helpers/getCompany";
-import getNearbyCompanies from '../helpers/getNearbyCompanies';
-import styled from 'styled-components';
-import NearbyPlaces from './NearbyPlaces';
-import LoadView from "./LoadView";
-import ErrorView from "./ErrorView";
+import useCompanies from "../../hooks/useCompanies";
+import { removeTrailingSlash } from "../../helpers/removeTrailingSlash";
+import getCompany from "../../helpers/getCompany";
+import getNearbyCompanies from '../../helpers/getNearbyCompanies';
 
-interface StyledInfoSectionProps {
-  primary?: boolean;
-}
+import NearbyPlaces from '../NearbyPlaces';
+import LoadView from "../LoadView";
+import ErrorView from "../ErrorView";
 
-const MainContainer = styled.main`
-  color: #575667;
-  font-size: 1.2rem;
-  margin-block-start: 5rem;
-  width: 100%;
-  @media (min-width: 1100px) { 
-    width: 90%;
-    margin-inline: auto;
-  }
-`;
-
-const LayoutContainer = styled.div`
-  @media (min-width: 1300px) { 
-    display: flex;
-  }
-`;
-
-const InfoSection = styled.section<StyledInfoSectionProps>`
-  width: max-conent;
-  flex-grow: ${props => props.primary ? 1 : 0};
-  margin-inline-start: ${props => props.primary ? 'auto' : 'initial'};
-  padding-inline: 5rem;
-`;
-
-const Heading = styled.h2<StyledInfoSectionProps>`
-  margin-block-start: 4rem;
-  margin-block-end: 2rem;
-`;
-
-const ImageContainer = styled.img`
-  width: 100%;
-  object-fit: cover;
-  height: 300px;
-`;
+import {
+  MainContainer,
+  LayoutContainer,
+  InfoSection,
+  Heading,
+  ImageContainer
+} from "./styledComponents";
 
 const CompanyPage = () => {
   const { data, isLoading, isError } = useCompanies();

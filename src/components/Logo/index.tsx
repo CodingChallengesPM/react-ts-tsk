@@ -1,5 +1,5 @@
 import React from "react";
-import LogoSvg from "../assets/LogoSvg";
+import LogoSvg from "../../assets/LogoSvg";
 import styled from 'styled-components';
 
 const LogoContainer = styled.figure`
