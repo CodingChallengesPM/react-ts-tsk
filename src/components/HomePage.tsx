@@ -59,6 +59,7 @@ font-weight: ${props => props.primary ? "bold" : "normal"};
 const CompanyName = styled.dt`
   width: 10%;
 `;
+
 const CompanyDescription = styled.dd<StyledDlProps>`
   margin-inline-start: 10rem;
 `;
