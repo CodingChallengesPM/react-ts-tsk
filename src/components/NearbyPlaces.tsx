@@ -1,5 +1,6 @@
 import React from "react";
 import styled from 'styled-components';
+import { Link } from "react-router-dom";
 
 
 const LayoutContainer = styled.div`
@@ -13,6 +14,16 @@ padding-block: 2.5rem;
 
 const ListItem = styled.li`
   margin-block: .5rem;
+`;
+
+const LinkContainer = styled(Link)`
+  background: #fff;
+  display: block;
+  heigh: 100%;
+  &:hover {
+    background: #f4f4f5;
+    border-radius: 4px;
+  }
 `;
 
 const CompanyContainer = styled.dl`
@@ -39,21 +50,24 @@ const CompanyDescription = styled.dd`
 //@ts-ignore
 const NearbyPlaces = ({ data }) => {
   const jsx = data.map((company: any) => (
-    <ListItem>
-      <CompanyContainer>
-        <CompanyName>{company.name}</CompanyName>
-        <CompanyDescription>
-          {`
+    <ListItem key={company.id}>
+      <LinkContainer to={`/${company.name}`} reloadDocument={true}>
+        <CompanyContainer>
+          <CompanyName>{company.name}</CompanyName>
+          <CompanyDescription>
+            {`
             ${company.address.number}
             ${company.address.street}
             ${company.address.country},
             ${company.address.city} 
             ${company.address.zip}
           `}
-        </CompanyDescription>
-      </CompanyContainer>
+          </CompanyDescription>
+        </CompanyContainer>
+      </LinkContainer>
     </ListItem>
   ))
+
   return (
     <LayoutContainer>
       <Heading>Naerby Places</Heading>
