@@ -3,7 +3,9 @@ import React from "react";
 import useCompanies from "../hooks/useCompanies";
 import { removeTrailingSlash } from "../helpers/removeTrailingSlash";
 import getCompany from "../helpers/getCompany";
+import getNearbyCompanies from '../helpers/getNearbyCompanies';
 import styled from 'styled-components';
+import NearbyPlaces from './NearbyPlaces';
 
 interface StyledInfoSectionProps {
   primary?: boolean;
@@ -33,7 +35,7 @@ const InfoSection = styled.section<StyledInfoSectionProps>`
   padding-inline: 5rem;
 `;
 
-const Heading = styled.h2`
+const Heading = styled.h2<StyledInfoSectionProps>`
   margin-block-start: 4rem;
   margin-block-end: 2rem;
 `;
@@ -50,6 +52,7 @@ const CompanyPage = () => {
   if (isLoading) return <div>Loading ...</div>
 
   if (isError) return <div>500 Error</div>
+
   const companyName = removeTrailingSlash(window.location.pathname);
   const companyData = getCompany(data, companyName);
 
@@ -58,9 +61,9 @@ const CompanyPage = () => {
     address,
     phone,
     email
-
   } = companyData[0]
-
+  
+  const nearbyCompanies = getNearbyCompanies(address.city, data);
   return (
     <MainContainer>
       <figure>
@@ -91,7 +94,7 @@ const CompanyPage = () => {
           <p>{email}</p>
         </InfoSection>
         <InfoSection primary>
-          <Heading>Nerby places</Heading>
+          <NearbyPlaces data={nearbyCompanies}/>
         </InfoSection>
       </LayoutContainer>
     </MainContainer>

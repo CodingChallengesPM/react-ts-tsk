@@ -71,7 +71,6 @@ function HomePage() {
 
   if (isError) return <div>500 Error</div>
 
-  console.log(data)
   const jsx = data.map((company: ListContent) => (
     <ListItem key={company.id}>
       <LinkContainer to={`/${company.name}`}>
