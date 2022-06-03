@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 
-
 import useCompanies from '../hooks/useCompanies';
-
+import ErrorView from './ErrorView'
+import LoadView from './LoadView';
 interface ListContent {
   name: string;
   id: string;
@@ -67,9 +67,9 @@ const CompanyDescription = styled.dd<StyledDlProps>`
 function HomePage() {
   const { data, isLoading, isError } = useCompanies();
 
-  if (isLoading) return <div>Loading ...</div>
+  if (isLoading) return <LoadView />
 
-  if (isError) return <div>500 Error</div>
+  if (isError) return <ErrorView />
 
   const jsx = data.map((company: ListContent) => (
     <ListItem key={company.id}>

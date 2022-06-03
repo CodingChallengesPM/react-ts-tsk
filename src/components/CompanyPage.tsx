@@ -6,6 +6,8 @@ import getCompany from "../helpers/getCompany";
 import getNearbyCompanies from '../helpers/getNearbyCompanies';
 import styled from 'styled-components';
 import NearbyPlaces from './NearbyPlaces';
+import LoadView from "./LoadView";
+import ErrorView from "./ErrorView";
 
 interface StyledInfoSectionProps {
   primary?: boolean;
@@ -49,9 +51,9 @@ const ImageContainer = styled.img`
 const CompanyPage = () => {
   const { data, isLoading, isError } = useCompanies();
 
-  if (isLoading) return <div>Loading ...</div>
+  if (isLoading) return <LoadView />
 
-  if (isError) return <div>500 Error</div>
+  if (isError) return <ErrorView />
 
   const companyName = removeTrailingSlash(window.location.pathname);
   const companyData = getCompany(data, companyName);
@@ -62,7 +64,7 @@ const CompanyPage = () => {
     phone,
     email
   } = companyData[0]
-  
+
   const nearbyCompanies = getNearbyCompanies(address.city, data);
   return (
     <MainContainer>
@@ -94,7 +96,7 @@ const CompanyPage = () => {
           <p>{email}</p>
         </InfoSection>
         <InfoSection primary>
-          <NearbyPlaces data={nearbyCompanies}/>
+          <NearbyPlaces data={nearbyCompanies} />
         </InfoSection>
       </LayoutContainer>
     </MainContainer>

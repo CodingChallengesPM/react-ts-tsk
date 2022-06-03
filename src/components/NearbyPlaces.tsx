@@ -17,7 +17,7 @@ const ListItem = styled.li`
 `;
 
 const LinkContainer = styled(Link)`
-  background: #fff;
+  background-color:#f8f8fa;
   display: block;
   heigh: 100%;
   &:hover {
@@ -30,7 +30,6 @@ const CompanyContainer = styled.dl`
   display: flex;
   padding-inline: 2rem;
   padding-block: 2rem;
-  background-color:#f8f8fa;
 `;
 
 const Heading = styled.h2`
